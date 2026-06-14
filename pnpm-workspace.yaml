@@ -1,0 +1,11 @@
+packages:
+  - .
+
+onlyBuiltDependencies:
+  - workerd
+
+ignoredBuiltDependencies:
+  - esbuild
+  - sharp
+
+minimumReleaseAge: 5760
