@@ -1,11 +1,16 @@
 packages:
   - .
 
-onlyBuiltDependencies:
-  - workerd
-
-ignoredBuiltDependencies:
-  - esbuild
-  - sharp
+# Decisión explícita de qué dependencias pueden ejecutar build scripts.
+# (workerd sí lo necesita; esbuild/sharp no). Con esto pnpm deja de pedir
+# "approve-builds" y de re-insertar el placeholder que rompía los scripts.
+allowBuilds:
+  workerd: true
+  esbuild: false
+  sharp: false
 
 minimumReleaseAge: 5760
+
+# No re-verificar dependencias antes de cada `pnpm run`/`pnpm exec`: ya están
+# controladas arriba y esa comprobación bloqueaba los scripts.
+verifyDepsBeforeRun: false
