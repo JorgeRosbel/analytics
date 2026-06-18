@@ -7,3 +7,6 @@ declare module '*.module.scss';
 declare module 'react-simple-maps';
 // El topojson del mundo (world-atlas) se importa como JSON.
 declare module 'world-atlas/countries-110m.json';
+// Diccionarios de nombres de país de i18n-iso-countries (JSON).
+declare module 'i18n-iso-countries/langs/es.json';
+declare module 'i18n-iso-countries/langs/en.json';

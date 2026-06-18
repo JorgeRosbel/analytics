@@ -32,6 +32,7 @@ app.route('/stats', stats); // /api/stats | /stats/realtime
 // API de su propio <script src>, para que funcione cargado en dominios externos.
 // Soporta SPAs: se engancha a la History API (pushState/replaceState/popstate)
 // para registrar también las navegaciones de cliente, no solo el reload completo.
+// Un único beacon por pageview (sin pings de duración) para no multiplicar requests.
 const TRACKER = `(function(){try{
   var s=document.currentScript;if(!s)return;
   var api=new URL(s.src).origin;

@@ -71,8 +71,9 @@ stats.get('/', async c => {
     .bind(...binds)
     .all<{ path: string; views: number }>();
 
+  // Incluye el tráfico directo (referrer vacío/NULL): el front lo etiqueta "Directo".
   const topReferrers = await c.env.DB.prepare(
-    `SELECT referrer, COUNT(*) AS views FROM events WHERE ${where} AND referrer <> '' GROUP BY referrer ORDER BY views DESC LIMIT 10`
+    `SELECT COALESCE(referrer, '') AS referrer, COUNT(*) AS views FROM events WHERE ${where} GROUP BY COALESCE(referrer, '') ORDER BY views DESC LIMIT 10`
   )
     .bind(...binds)
     .all<{ referrer: string; views: number }>();
